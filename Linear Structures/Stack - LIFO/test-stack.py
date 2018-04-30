@@ -3,7 +3,7 @@ from stack import Stack
 from simple_balance_parentheses import basic_par_checker
 from general_balance_parentheses import general_par_checker
 from convertdecimalstobinary import dec_to_bin_divide_by_2
-
+from convertdecimalstobase import dec_to_bin_divide_by_base
 
 class TestStack(unittest.TestCase):
     """Test the Stack class."""
@@ -87,6 +87,19 @@ class TestConvertDecimalstoBinary(unittest.TestCase):
         def test_2(self):
                 """Test 2."""
                 self.assertEqual(dec_to_bin_divide_by_2(42), '101010')
+
+
+class TestConvertDecimalstoBase(unittest.TestCase):
+        """Test Convert Decimals to Base."""
+
+        def test_1(self):
+                """Test 1."""
+                self.assertEqual(dec_to_bin_divide_by_base(42, 2), '101010')
+
+        def test_2(self):
+                """Test 2."""
+                self.assertEqual(dec_to_bin_divide_by_base(25, 16), '19')
+
 
 
 if __name__ == '__main__':
