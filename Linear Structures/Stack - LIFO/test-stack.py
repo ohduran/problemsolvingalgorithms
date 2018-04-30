@@ -5,6 +5,7 @@ from general_balance_parentheses import general_par_checker
 from convertdecimalstobinary import dec_to_bin_divide_by_2
 from convertdecimalstobase import dec_to_bin_divide_by_base
 
+
 class TestStack(unittest.TestCase):
     """Test the Stack class."""
 
@@ -99,7 +100,6 @@ class TestConvertDecimalstoBase(unittest.TestCase):
         def test_2(self):
                 """Test 2."""
                 self.assertEqual(dec_to_bin_divide_by_base(25, 16), '19')
-
 
 
 if __name__ == '__main__':
