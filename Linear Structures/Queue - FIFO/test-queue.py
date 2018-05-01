@@ -60,5 +60,11 @@ class TestHotPotato(unittest.TestCase):
                 )
 
 
+class TestPrintingQueue(unittest.TestCase):
+        """Printing Tasks test."""
+
+        pass
+
+
 if __name__ == '__main__':
     unittest.main()
