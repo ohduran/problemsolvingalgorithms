@@ -1,5 +1,6 @@
 import unittest
 from queue import Queue
+from hotpotato import hot_potato
 
 
 class TestQueue(unittest.TestCase):
@@ -41,6 +42,22 @@ class TestQueue(unittest.TestCase):
         self.assertEqual(q.size(), 4)
 
 
+class TestHotPotato(unittest.TestCase):
+        """Test Hot Potato."""
+
+        def test_1(self):
+                """Test 1."""
+                self.assertEqual(
+                        hot_potato(
+                                ['Bill',
+                                 'David',
+                                 'Susan',
+                                 'Jane',
+                                 'Kent',
+                                 'Brad'],
+                                7),
+                        'Susan'
+                )
 
 
 if __name__ == '__main__':
