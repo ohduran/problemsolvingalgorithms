@@ -1,6 +1,7 @@
 import unittest
 from queue import Queue
 from hotpotato import hot_potato
+from printingtasks import has_task_been_created, Printer, Task
 
 
 class TestQueue(unittest.TestCase):
@@ -63,7 +64,50 @@ class TestHotPotato(unittest.TestCase):
 class TestPrintingQueue(unittest.TestCase):
         """Printing Tasks test."""
 
-        pass
+        def test_has_task_been_created(self):
+                """Test has_task_been_created function."""
+                a = has_task_been_created()
+                self.assertTrue(isinstance(a, bool))
+
+        def test_Task(self):
+                """Test Task class."""
+                time = 10
+                t = Task(time=time)
+                self.assertEqual(t.timestamp, time)
+                self.assertTrue(t.pages >= 1)
+                self.assertTrue(t.pages <= 21)
+
+        def test_Task_get_stamp(self):
+                """Test get_stamp method."""
+                time = 10
+                t = Task(time=time)
+                self.assertEqual(t.get_stamp(), time)
+
+        def test_Task_get_pages(self):
+                """Test get_pages method."""
+                t = Task(10)
+                pages = t.pages
+                self.assertEqual(t.get_pages(), pages)
+
+        def test_Task_waiting_time(self):
+                """Test waiting_time method."""
+                time = 10
+                t = Task(time=time)
+                current_time = 100
+                self.assertEqual(
+                        t.waiting_time(current_time),
+                        current_time - time)
+
+        def test_Printer(self):
+                """Test Printer class."""
+                pages_per_minute = 60
+                p = Printer(pages_per_minute)
+                self.assertEqual(p._ppm, pages_per_minute)
+
+        def test_Printer_tick(self):
+                """Test Printer tick method."""
+                pass
+
 
 
 if __name__ == '__main__':
