@@ -93,7 +93,5 @@ class TestUnorderedList(unittest.TestCase):
         self.assertFalse(ul.search(2))
 
 
-
-
 if __name__ == '__main__':
     unittest.main()
