@@ -1,4 +1,5 @@
 from dequeue import Dequeue
+from palindromechecker import palindrome_checker
 import unittest
 
 
@@ -68,6 +69,15 @@ class TestDequeue(unittest.TestCase):
                 self.assertEqual(d.size(), number)
 
 
+class TestPalindromeChecker(unittest.TestCase):
+        """Palindrome Checker tests."""
+
+        def test_1(self):
+                """Test 1."""
+                self.assertTrue(palindrome_checker('radar'))
+                self.assertTrue(palindrome_checker('toot'))
+                self.assertTrue(palindrome_checker('madam'))
+                self.assertFalse(palindrome_checker('palindrome'))
 
 
 if __name__ == '__main__':

@@ -6,3 +6,4 @@ Ordered collection of items where the addition of new items or removal of existi
 Ordered collection of items where the addition of new items and the removal of existing items take place at different ends (FIFO).
 ## Dequeue
 Similar to the queue, it has two ends, and the items remain positioned in the collection. What makes a dequeue different is the unrestrictive nature of adding and removing items.
+## Linked List
