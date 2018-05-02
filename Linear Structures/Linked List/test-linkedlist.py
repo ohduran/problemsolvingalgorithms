@@ -1,5 +1,5 @@
 import unittest
-from linkedlist import Node
+from linkedlist import Node, UnorderedList
 
 
 class TestNode(unittest.TestCase):
@@ -33,6 +33,66 @@ class TestNode(unittest.TestCase):
 
         n1.set_next(n2)
         self.assertEqual(n1.get_next(), n2)
+
+
+class TestUnorderedList(unittest.TestCase):
+    """Test UnorderedList class."""
+
+    def test_initially_points_to_empty(self):
+        """An immediately instantiated UL must point to None."""
+        ul = UnorderedList()
+
+        self.assertIsNone(ul.head)
+
+    def test_is_empty(self):
+        """Test is_empty method."""
+        ul = UnorderedList()
+        self.assertTrue(ul.is_empty())
+        ul.head = Node(1)
+        self.assertFalse(ul.is_empty())
+
+    def test_add(self):
+        """Test add method."""
+        ul = UnorderedList()
+        ul.add(1)
+        self.assertFalse(ul.is_empty())
+        self.assertTrue(isinstance(ul.head, Node))
+        self.assertEqual(ul.head.get_data(), 1)
+
+    def test_size(self):
+        """Test size method."""
+        ul = UnorderedList()
+        ul.add(3)
+        ul.add(2)
+        ul.add(1)
+        self.assertEqual(ul.size(), 3)
+
+    def test_search(self):
+        """Test search method."""
+        ul = UnorderedList()
+        ul.add(3)
+        ul.add(2)
+        ul.add(1)
+
+        self.assertTrue(ul.search(3))
+        self.assertTrue(ul.search(2))
+        self.assertTrue(ul.search(1))
+        self.assertFalse(ul.search(0))
+
+    def test_remove(self):
+        """Test remove method."""
+        ul = UnorderedList()
+        ul.add(3)
+        ul.add(2)
+        ul.add(1)
+
+        self.assertTrue(ul.search(2))
+
+        ul.remove(2)
+
+        self.assertFalse(ul.search(2))
+
+
 
 
 if __name__ == '__main__':
