@@ -69,14 +69,6 @@ class TestPrintingQueue(unittest.TestCase):
                 a = has_task_been_created()
                 self.assertTrue(isinstance(a, bool))
 
-        def test_Task(self):
-                """Test Task class."""
-                time = 10
-                t = Task(time=time)
-                self.assertEqual(t.timestamp, time)
-                self.assertTrue(t.pages >= 1)
-                self.assertTrue(t.pages <= 21)
-
         def test_Task_get_stamp(self):
                 """Test get_stamp method."""
                 time = 10
@@ -97,12 +89,6 @@ class TestPrintingQueue(unittest.TestCase):
                 self.assertEqual(
                         t.waiting_time(current_time),
                         current_time - time)
-
-        def test_Printer(self):
-                """Test Printer class."""
-                pages_per_minute = 60
-                p = Printer(pages_per_minute)
-                self.assertEqual(p._ppm, pages_per_minute)
 
         def test_Printer_new_task(self):
                 """Test Printer new_task method."""

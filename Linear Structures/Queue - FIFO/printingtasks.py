@@ -16,10 +16,9 @@ class Printer():
 
     def __init__(self, ppm):
         """Define constructor."""
-        self._ppm = ppm
         self.current_task = None
         self.time_remaining = 0
-        self.page_rate = 1
+        self.page_rate = ppm
 
     def tick(self):
         """
