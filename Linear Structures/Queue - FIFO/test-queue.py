@@ -154,10 +154,5 @@ class TestPrintingQueue(unittest.TestCase):
                 self.assertIsNone(p.current_task)
 
 
-
-
-
-
-
 if __name__ == '__main__':
     unittest.main()
