@@ -104,9 +104,58 @@ class TestPrintingQueue(unittest.TestCase):
                 p = Printer(pages_per_minute)
                 self.assertEqual(p._ppm, pages_per_minute)
 
+        def test_Printer_new_task(self):
+                """Test Printer new_task method."""
+                pages_per_minute = 60
+                time = 10
+                p = Printer(pages_per_minute)
+                t = Task(time=time)
+                pages = t.get_pages()
+                p.start_next_task(t)
+
+                self.assertEqual(p.time_remaining, 60*pages/p.page_rate)
+                self.assertEqual(p.current_task, t)
+
+        def test_Printer_isbusy(self):
+                """Test isbusy method."""
+                pages_per_minute = 60
+                time = 10
+                p = Printer(pages_per_minute)
+
+                self.assertFalse(p.is_busy())
+
+                t = Task(time=time)
+                p.start_next_task(t)
+
+                self.assertTrue(p.is_busy())
+
         def test_Printer_tick(self):
                 """Test Printer tick method."""
-                pass
+                pages_per_minute = 60
+                time = 10
+                p = Printer(pages_per_minute)
+                t = Task(time=time)
+                pages = t.get_pages()
+                p.start_next_task(t)
+
+                time_remaining = 60*pages/p.page_rate
+
+                self.assertEqual(p.time_remaining, time_remaining)
+
+                p.tick()
+                time_remaining -= 1
+
+                self.assertEqual(p.time_remaining, time_remaining)
+
+                while time_remaining > 0:
+                        time_remaining -= 1
+                        p.tick()
+
+                self.assertIsNone(p.current_task)
+
+
+
+
 
 
 

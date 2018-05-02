@@ -1,6 +1,5 @@
 from queue import Queue
 from printingtasks import Printer, Task, has_task_been_created
-import random
 
 
 def simulation(seconds, pages_per_minute):
