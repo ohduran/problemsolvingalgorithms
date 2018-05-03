@@ -1,5 +1,5 @@
 import unittest
-from linkedlist import Node, UnorderedList
+from linkedlist import Node, UnorderedList, OrderedList
 
 
 class TestNode(unittest.TestCase):
@@ -91,6 +91,28 @@ class TestUnorderedList(unittest.TestCase):
         ul.remove(2)
 
         self.assertFalse(ul.search(2))
+
+
+class TestOrderedList(unittest.TestCase):
+    """Test Ordered List class."""
+
+    def test_search(self):
+        """Test search method."""
+        ol = OrderedList()
+        ol.head = Node(1)
+
+        self.assertTrue(ol.search(1))
+        self.assertFalse(ol.search(2))
+
+    def test_add(self):
+        """Test add method."""
+        ol = OrderedList()
+        self.assertTrue(ol.is_empty())
+
+        ol.add(1)
+        self.assertFalse(ol.is_empty())
+        self.assertTrue(ol.search(1))
+
 
 
 if __name__ == '__main__':

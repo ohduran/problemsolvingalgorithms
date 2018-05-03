@@ -80,3 +80,45 @@ class UnorderedList:
             self.head = current.get_next()
         else:
             previous.set_next(current.get_next())
+
+
+class OrderedList(UnorderedList):
+    """
+    Ordered List class, a collection of nodes indexed,
+    but the numbers inside must be in order.
+
+    Inherits __init__, is_empty, size and remove from UnorderedList.
+    """
+
+    def search(self, item):
+        """Return True if the item is on the list. O(n)."""
+        current = self.head
+        while current is not None:
+            if current.get_data() == item:
+                return True
+            else:
+                if current.get_data() > item:
+                    return False
+                current = current.get_next()
+        return False
+
+    def add(self, item):
+        """Add a new item on the correct position."""
+        current = self.head
+        previous = None
+        stop = False
+
+        while current is not None and not stop:
+            if current.get_data > item:
+                stop = True  # position found
+            else:
+                previous = current
+                current = current.get_next()
+
+        temp = Node(item)
+        if previous is None:
+            temp.set_next(self.head)
+            self.head = temp
+        else:
+            temp.set_next(current)
+            previous.set_next(temp)
