@@ -41,7 +41,6 @@ def is_palindrome(palindrome_candidate):
     palindrome_candidate = ''.join(palindrome_candidate.split(','))
     palindrome_candidate = ''.join(palindrome_candidate.split('.'))
     palindrome_candidate = ''.join(palindrome_candidate.split(';'))
-    palindrome_candidate = ''.join(palindrome_candidate.split('\''))
     palindrome_candidate = palindrome_candidate.lower()
     # base case
     if len(palindrome_candidate) == 1:
