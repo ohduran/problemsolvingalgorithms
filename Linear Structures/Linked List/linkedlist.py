@@ -28,6 +28,7 @@ class UnorderedList:
     def __init__(self):
         """Define constructor."""
         self.head = None  # initially pointed to nothing (empty)
+        self.number_of_nodes = 0
 
     def is_empty(self):
         """Check if self is pointing to a Node or not."""
@@ -41,15 +42,11 @@ class UnorderedList:
         temp.set_next(self.head)
 
         self.head = temp
+        self.number_of_nodes += 1
 
     def size(self):
-        """Return the size of the linked list. O(n)."""
-        current = self.head
-        count = 0
-        while current is not None:
-            count += 1
-            current = current.get_next()
-        return count
+        """Return the size of the linked list. O(1)."""
+        return self.number_of_nodes
 
     def search(self, item):
         """Return True if item is on the list. O(n)."""
