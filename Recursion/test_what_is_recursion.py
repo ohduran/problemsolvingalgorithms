@@ -24,8 +24,19 @@ class TestWhatIsRecursion(unittest.TestCase):
         """Test is_palindrome function."""
         self.assertFalse(is_palindrome('palindrome'))
         self.assertTrue(is_palindrome('madam'))
-        self.assertTrue(is_palindrome('Reviled did I live, said I, as evil I did deliver'))
-        self.assertTrue(is_palindrome('Able was I ere I saw Elba'))
+        self.assertTrue(is_palindrome(
+                'Reviled did I live, said I, as evil I did deliver'))
+        self.assertTrue(is_palindrome(
+                'Able was I ere I saw Elba'))
+
+
+class TestStackFrames(unittest.TestCase):
+        """Test stackframes module."""
+
+        def test_to_str(self):
+            """Test to_str function."""
+            self.assertEqual(to_str(1453, 10), '1453')
+            self.assertEqual(to_str(1453, 16), '5AD')
 
 
 if __name__ == '__main__':
