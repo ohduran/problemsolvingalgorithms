@@ -28,6 +28,7 @@ def tree(branch_len, turtle):
         turtle.right(20)
         turtle.backward(branch_len)
 
+
 def main():
         t = Turtle()
         window = Screen()
