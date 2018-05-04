@@ -1,5 +1,6 @@
 import unittest
 from what_is_recursion import list_sum, factorial, to_str, is_palindrome
+from towersofhanoi import tower_of_hanoi
 
 
 class TestWhatIsRecursion(unittest.TestCase):
@@ -37,6 +38,33 @@ class TestStackFrames(unittest.TestCase):
             """Test to_str function."""
             self.assertEqual(to_str(1453, 10), '1453')
             self.assertEqual(to_str(1453, 16), '5AD')
+
+
+class TestTowerOfHanoi(unittest.TestCase):
+        """Test Tower of Hanoi."""
+
+        def test_n(self):
+                """Test n."""
+                for n in range(1, 10):
+                        moves = tower_of_hanoi(n, "a", "b", "c")
+                        self.assertEqual(len(moves), 2**n - 1)
+
+        def test_3(self):
+            """Test 3."""
+            moves = tower_of_hanoi(3, "a", "b", "c")
+            len_moves = 2**3 - 1
+            expected_moves = [
+                ['a', 'b'],
+                ['a', 'c'],
+                ['b', 'c'],
+                ['a', 'b'],
+                ['c', 'a'],
+                ['c', 'b'],
+                ['a', 'b']
+            ]
+
+            self.assertEqual(len(moves), len_moves)
+            self.assertEqual(moves, expected_moves)
 
 
 if __name__ == '__main__':
