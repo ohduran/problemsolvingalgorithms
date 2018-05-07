@@ -36,3 +36,49 @@ class Maze:
     def draw_maze(self):
         """Draw the maze in a window on the screen."""
         pass
+
+    def update_position(self):
+        """
+        Update the internal representation of the Maze
+        and change the position of the turtle in the window
+        """
+        pass
+
+    def leave_breadcrumb(self):
+        """Leave a breadcrumb in the current position."""
+        pass
+
+    def dead_end(self):
+        """Mark the current position as a dead end."""
+        pass
+
+    def is_exit(self):
+        """Return True if the current position is the EXIT."""
+        pass
+
+
+def search_from(maze, start_row, start_column):
+    """Search until we find the exit, recursively."""
+    maze.update_position(start_row, start_column)
+    # base case 1 - if obstacle, return False
+    if maze[start_row][start_column] == OBSTACLE:
+        return False
+    # base case 2 - if we have been there already, return False
+    if maze[start_row][start_column] == BREADCRUMB:
+        return False
+    # base case 3 - success, and outside edge not occupied by OBSTACLE
+    if maze.is_exit(start_row, start_column):
+        maze.update_position(start_row, start_column)
+        return True
+
+    # recursion
+    maze.leave_breadcrumb(start_row, start_column)
+    north = search_from(maze, start_row - 1, start_column)
+    south = search_from(maze, start_row + 1, start_column)
+    east = search_from(maze, start_row, start_column + 1)
+    west = search_from(maze, start_row, start_column - 1)
+
+    if north or south or east or west:
+        maze.update_position(start_row, start_column)
+    else:
+        maze.dead_end()
