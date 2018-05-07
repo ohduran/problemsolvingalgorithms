@@ -27,8 +27,12 @@ class Maze:
 
     def __init__(self):
         """
-        Reads in a data file representing a maze,
+        Read in a data file representing a maze,
         initializes the internal representation of the maze,
         and finds the starting point of the turtle.
         """
+        pass
+
+    def draw_maze(self):
+        """Draw the maze in a window on the screen."""
         pass
