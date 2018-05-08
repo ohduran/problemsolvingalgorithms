@@ -1,6 +1,7 @@
 import unittest
 from what_is_recursion import list_sum, factorial, to_str, is_palindrome
 from towersofhanoi import tower_of_hanoi
+from maze import Maze
 
 
 class TestWhatIsRecursion(unittest.TestCase):
@@ -65,6 +66,20 @@ class TestTowerOfHanoi(unittest.TestCase):
 
             self.assertEqual(len(moves), len_moves)
             self.assertEqual(moves, expected_moves)
+
+
+class TestMaze(unittest.TestCase):
+        """Maze tests."""
+
+        def test_1(self):
+                """Test instantiation method for Maze class."""
+                m = Maze(maze_file_name='Recursion/maze.txt')
+
+                maze_list = m.maze
+                columns = m.columns
+                self.assertTrue(isinstance(maze_list, list))
+                print(maze_list)
+                print(columns)
 
 
 if __name__ == '__main__':

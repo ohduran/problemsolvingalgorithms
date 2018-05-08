@@ -32,36 +32,37 @@ class Maze:
         initializes the internal representation of the maze,
         and finds the starting point of the turtle.
         """
-        self.maze = []
-        maze_file = open(maze_file_name, 'r')
-
-        rows = 0
-        for line in maze_file:
-            row_list = []
-            columns = 0
-            for square in line[:-1]:
-                row_list.append(square)
-                if square == 'S':
-                    self.start_row = rows
-                    self.start_col = columns
-                columns += 1
-            rows += 1
-            self.maze.append(row_list)
+        with open(maze_file_name, 'r') as maze_file:
+            self.maze = [[square for square in line if square != '\n'] for line in maze_file]
+            rows = sum((1 for line in maze_file))
+            columns = len(self.maze[0])  # maze assumed to be squared
+            # rows = 0
+            # for line in maze_file:
+            #     row_list = []
+            #     columns = 0
+            #     for square in line[:-1]:
+            #         row_list.append(square)
+            #     if square == 'S':
+            #         self.start_row = rows
+            #         self.start_col = columns
+            #     columns += 1
+            # rows += 1
+            # self.maze.append(row_list)
 
         self.rows = rows
         self.columns = columns
-        self.x_translate = - columns / 2
-        self.y_translate = rows / 2
-
-        self.turtle = Turtle(shape='turtle')
-
-        setup(width=600, height=600)
-        setworldcoordinates(
-            - (columns - 1) / 2 - .5,
-            - (rows - 1) / 2 - .5,
-            (columns - 1) / 2 + .5,
-            (rows - 1) / 2 + .5
-        )
+        # self.x_translate = - columns / 2
+        # self.y_translate = rows / 2
+        #
+        # self.turtle = Turtle(shape='turtle')
+        #
+        # setup(width=600, height=600)
+        # setworldcoordinates(
+        #     - (columns - 1) / 2 - .5,
+        #     - (rows - 1) / 2 - .5,
+        #     (columns - 1) / 2 + .5,
+        #     (rows - 1) / 2 + .5
+        # )
 
     def draw_maze(self):
         """Draw the maze in a window on the screen."""
