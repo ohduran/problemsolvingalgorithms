@@ -23,6 +23,11 @@ Procedure:
 from turtle import Turtle, setup, setworldcoordinates, tracer, update
 
 
+BREADCRUMB = "-"
+OBSTACLE = "+"
+PART_OF_PATH = "o"
+
+
 class Maze:
     """Will draw the maze for the turtle to walk across."""
 
@@ -33,36 +38,16 @@ class Maze:
         and finds the starting point of the turtle.
         """
         with open(maze_file_name, 'r') as maze_file:
-            self.maze = [[square for square in line if square != '\n'] for line in maze_file]
-            rows = sum((1 for line in maze_file))
-            columns = len(self.maze[0])  # maze assumed to be squared
-            # rows = 0
-            # for line in maze_file:
-            #     row_list = []
-            #     columns = 0
-            #     for square in line[:-1]:
-            #         row_list.append(square)
-            #     if square == 'S':
-            #         self.start_row = rows
-            #         self.start_col = columns
-            #     columns += 1
-            # rows += 1
-            # self.maze.append(row_list)
+            self.maze = [[square for square in line if square != '\n']
+                         for line in maze_file]
+            self.rows = sum((1 for line in maze_file))
+            # maze assumed to have rows of the same length
+            self.columns = len(self.maze[0])
 
-        self.rows = rows
-        self.columns = columns
-        # self.x_translate = - columns / 2
-        # self.y_translate = rows / 2
-        #
-        # self.turtle = Turtle(shape='turtle')
-        #
-        # setup(width=600, height=600)
-        # setworldcoordinates(
-        #     - (columns - 1) / 2 - .5,
-        #     - (rows - 1) / 2 - .5,
-        #     (columns - 1) / 2 + .5,
-        #     (rows - 1) / 2 + .5
-        # )
+            self.start_row, self.start_column = [(row_number, row.index('S'))
+                                                 for row_number, row
+                                                 in enumerate(self.maze)
+                                                 if 'S' in row][0]
 
     def draw_maze(self):
         """Draw the maze in a window on the screen."""
@@ -135,7 +120,7 @@ def search_from(maze, start_row, start_column):
         return False
     # base case 3 - success, and outside edge not occupied by OBSTACLE
     if maze.is_exit(start_row, start_column):
-        maze.update_position(start_row, start_column)
+        maze.leave_breadcrumb(start_row, start_column)
         return True
 
     # recursion
