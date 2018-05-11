@@ -20,12 +20,15 @@ Procedure:
 - We have explored a square unsuccesfully in all four directions
 
 """
-from turtle import Turtle, setup, setworldcoordinates, tracer, update
+from turtle import Turtle, setup, tracer, update
 
 
 BREADCRUMB = "-"
+BREADCRUMB_COLOR = 'black'
 OBSTACLE = "+"
+OBSTACLE_COLOR = 'red'
 PART_OF_PATH = "o"
+PART_OF_PATH_COLOR = 'green'
 
 
 class Maze:
@@ -48,70 +51,68 @@ class Maze:
                                                  for row_number, row
                                                  in enumerate(self.maze)
                                                  if 'S' in row][0]
+        self.width = self.columns / 2
+        self.height = self.rows / 2
+        self.t = Turtle(shape='turtle')
+        setup(width=600, height=600)
 
     def draw_maze(self):
-        """Draw the maze in a window on the screen."""
+        """Draw the maze in Tkinter."""
         for y in range(self.rows):
             for x in range(self.columns):
                 if self.maze[y][x] == OBSTACLE:
-                    self.draw_centered_box(
-                        x + self.x_translate,
-                        -y + self.y_translate,
-                        'tan'
-                    )
-        self.turtle.color('black', 'blue')
+                    self.draw_centered_box(x + self.width,
+                                           - y - self.height, 'tan')
+        self.t.color('black', 'blue')
 
     def draw_centered_box(self, x, y, color):
-        """Draw a wall."""
+        """Draw a box centered in (x, y)."""
         tracer(0)
-        self.turtle.up()
-        self.turtle.goto(x-.5, y-.5)
-        self.turtle.color('black', color)
-        self.turtle.setheading(90)
-        self.turtle.down()
-        self.turtle.begin_fill()
+        self.t.up()
+        self.t.goto(x-0.5, y-0.5)
+        self.t.color('black', color)
+        self.t.setheading(90)
+        self.t.down()
+        self.t.begin_fill()
         for i in range(4):
-            self.turtle.forward(1)
-            self.turtle.right(90)
-            self.turtle.end_fill()
+            self.t.forward(1)
+            self.t.right(90)
+            self.t.end_fill()
             update()
             tracer(1)
 
     def move_turtle(self, x, y):
-        """Move the turtle to coordinates [y][x] in the maze."""
-        self.turtle.up()
-        self.turtle.setheading(self.turtle.towards(
-            x + self.x_translate,
-            -y + self.y_translate))
-        self.turtle.goto(x + self.x_translate, -y + self.y_translate)
+        """Move turtle to coordinates x, y."""
+        self.t.up()
+        self.t.setheading(self.t.towards(x + self.width, -y - self.height))
+        self.t.goto(x + self.width, -y - self.height)
 
-    def drop_breadcrumb(self, color):
-        """Change the maze to reflect a breadcrumb."""
-        self.turtle.dot(color)
+    def drop_color(self, color):
+        """Drop a breadcrumb of a certain color."""
+        self.t.dot(color)
 
-    def update_position(self):
-        """
-        Update the internal representation of the Maze
-        and change the position of the turtle in the window
-        """
-        pass
+    def move_to(self, row, col):
+        """Move the turtle to row=row and column=col."""
+        self.move_turtle(col, row)
 
-    def leave_breadcrumb(self):
-        """Leave a breadcrumb in the current position."""
-        pass
+    def is_exit(self, row, col):
+            """
+            Return True
+            if the position of the turtle is the end of the maze.
+            """
+            first_row = row == 0
+            last_row = row == self.rows - 1
+            first_column = col == 0
+            last_column = col == self.columns - 1
+            return first_row or last_row or first_column or last_column
 
-    def dead_end(self):
-        """Mark the current position as a dead end."""
-        pass
-
-    def is_exit(self):
-        """Return True if the current position is the EXIT."""
-        pass
+    def __getitem__(self, idx):
+            return self.maze[idx]
 
 
 def search_from(maze, start_row, start_column):
     """Search until we find the exit, recursively."""
-    maze.update_position(start_row, start_column)
+    maze.move_to(start_row, start_column)
     # base case 1 - if obstacle, return False
     if maze[start_row][start_column] == OBSTACLE:
         return False
@@ -120,20 +121,22 @@ def search_from(maze, start_row, start_column):
         return False
     # base case 3 - success, and outside edge not occupied by OBSTACLE
     if maze.is_exit(start_row, start_column):
-        maze.leave_breadcrumb(start_row, start_column)
+        maze.drop_color(PART_OF_PATH)
         return True
 
     # recursion
-    maze.leave_breadcrumb(start_row, start_column)
+    maze.drop_color(PART_OF_PATH)
     north = search_from(maze, start_row - 1, start_column)
     south = search_from(maze, start_row + 1, start_column)
     east = search_from(maze, start_row, start_column + 1)
     west = search_from(maze, start_row, start_column - 1)
 
-    if north or south or east or west:
-        maze.update_position(start_row, start_column)
+    where = north or south or east or west
+    if where is True:
+            maze.drop_color(PART_OF_PATH)
+            return where
+
     # base case 4 - we have found a dead end.
     else:
-        maze.dead_end()
-
-    return north or south or east or west
+        maze.drop_color(BREADCRUMB)
+        return False
