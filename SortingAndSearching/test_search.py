@@ -20,6 +20,7 @@ class TestSearch(unittest.TestCase):
     def test_binary_search(self):
         """Test Binary Search method."""
         test = sorted([1, 2, 32, 8, 17, 19, 42, 13, 0])
+        self.assertFalse(binary_search([], 1))
         self.assertTrue(binary_search(test, 13))
         self.assertFalse(binary_search(test, 3))
 

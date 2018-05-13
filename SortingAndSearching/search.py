@@ -45,16 +45,22 @@ def binary_search(a_list, item):
     If not there, recursively search in the subset list
     that results on dividing a_list in 2
     and take only the one where item might be (by compared to a_list[n/2])
+
+    O(log n)
+    -- number of operations is i that verifies n/2**i = 1
+        --> i=log2(n) = log2(10) * log(n)
     """
-    first = 0
-    last = len(a_list) - 1
-    while first <= last:
-        midpoint = (first + last) // 2
-        if a_list[midpoint] == item:
-            return True
-        else:
-            if item < a_list[midpoint]:
-                last = midpoint - 1
-            else:
-                first = midpoint + 1
-    return False
+    if len(a_list) == 0:
+        return False
+    first_position = 0
+    last_position = 0
+    middle_position = (first_position + last_position) // 2
+    middle_item = a_list[middle_position]
+    # base Case
+    if middle_item == item:
+        return True
+    # recursion
+    elif middle_item > item:
+        return binary_search(a_list[:middle_position], item)
+    elif middle_item < item:
+        return binary_search(a_list[middle_position + 1:], item)
