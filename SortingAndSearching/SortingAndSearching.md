@@ -31,3 +31,7 @@ One way to always have a perfect hash function with no collisions is to increase
 Divides the item into equal-size pieces, and then they are added together to give the resulting hash value.
 - Mid-square method:
 Square the item, and then extract some portion of the resuting digits.
+
+But this doesn't scale very well for inserting data into the hash table.
+
+One method for resolving collisions looks into the hash table and tries to find another open slot to hold the item that caused the collision. A simple way to do this is to start at the original hash table and then move in a sequential manner through the slots until we encounter the first empty slot.
