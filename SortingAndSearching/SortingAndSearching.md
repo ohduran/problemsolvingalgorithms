@@ -24,3 +24,10 @@ This search operation is O(1), since a constant amount of time is required to co
 
 BUT -- what if the hash function is not giving me a list of unique values?
 Say we include 44 in the list above, with hash value 0 as well (44%11 = 0). This is a collision.
+
+One way to always have a perfect hash function with no collisions is to increase the size of the hash table so that each possible value in the item range can be accommodated. It is however not feasible when the number of possible items is large (1 billion slots for 9-digit SS numbers).
+
+- Folding method:
+Divides the item into equal-size pieces, and then they are added together to give the resulting hash value.
+- Mid-square method:
+Square the item, and then extract some portion of the resuting digits.
