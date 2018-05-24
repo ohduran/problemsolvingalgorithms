@@ -25,5 +25,14 @@ class TestSearch(unittest.TestCase):
         self.assertFalse(binary_search(test, 3))
 
 
+class TestMap(unittest.TestCase):
+    """Test Map implementation."""
+
+    def test_map_instantiation(self):
+        """Test instantiation."""
+        pass
+
+
+
 if __name__ == '__main__':
     unittest.main()
