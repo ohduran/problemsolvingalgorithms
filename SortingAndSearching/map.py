@@ -13,4 +13,17 @@ an idea often referred to as map.
 class Map():
     """Map Abstract Data Type."""
 
-    pass
+    def __init__(self):
+        """Instantiation method."""
+        pass
+
+    def put(self, key, val):
+        """
+        Add a new key-value pair to the map.
+        If the key is already in the map, override.
+        """
+        pass
+
+    def get(self, key):
+        """Get the value associated with the key."""
+        pass
