@@ -64,6 +64,3 @@ def binary_search(a_list, item):
         return binary_search(a_list[:middle_position], item)
     elif middle_item < item:
         return binary_search(a_list[middle_position + 1:], item)
-
-    def hash():
-        pass

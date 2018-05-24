@@ -34,4 +34,10 @@ Square the item, and then extract some portion of the resuting digits.
 
 But this doesn't scale very well for inserting data into the hash table.
 
-One method for resolving collisions looks into the hash table and tries to find another open slot to hold the item that caused the collision. A simple way to do this is to start at the original hash table and then move in a sequential manner through the slots until we encounter the first empty slot.
+One method for resolving collisions looks into the hash table and tries to find another open slot to hold the item that caused the collision. A simple way to do this is to start at the original hash table and then move in a sequential manner through the slots until we encounter the first empty slot: this is open addressing, called linear probing.
+
+Once we have a hashing table, it's crucial that we use the same method to search.  However, a disadvantage of linear probing is the tendency for clustering: if many collisions occur at the same hash table, a number of surrounding slots will be filled by the linear probing resolution. One way to deal with this is to extend the linear probing technique so that instead of looking sequentially for the next open slot, we skip slots, distributing the items more evenly. The general name for this is rehashing.
+
+A variation of the linear probing idea is called quadrating probing. Instead of using a constant "skip" value, we use a rehash function that increments the hash value by 1,3,5,7,9, ..., using successive perfect squares.
+
+An alternative method for handling the collision is to allow each slot to hold a reference to a collection of items. As more and more items hash to the same location, the difficulty to search for the item increases.
