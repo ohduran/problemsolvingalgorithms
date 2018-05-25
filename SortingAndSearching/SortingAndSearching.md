@@ -41,3 +41,14 @@ Once we have a hashing table, it's crucial that we use the same method to search
 A variation of the linear probing idea is called quadrating probing. Instead of using a constant "skip" value, we use a rehash function that increments the hash value by 1,3,5,7,9, ..., using successive perfect squares.
 
 An alternative method for handling the collision is to allow each slot to hold a reference to a collection of items. As more and more items hash to the same location, the difficulty to search for the item increases.
+
+# Sorting
+
+Sorting is the process of placing elements from a collection in some kind of order. We have already seen a number of algorithms that were able to benefit from having a sorted list.
+
+For small collections, a complex sorting method may be more trouble than it is worth. For larger collections, we want to take advantage of as many improvements as possible.
+
+In order to sort a collection, it will be necessary to have some systematic way to compare values to see if they are out of order. The total number of comparisons will be the most common way to measure a sort procedure; the exchange of positions is a costly operation and the total number of exchanges will also be important for evaluating the overall efficiency of the algorithm.
+
+## Bubble Sort
+The bubble sort makes multiple passes through a list.
