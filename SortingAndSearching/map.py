@@ -14,7 +14,7 @@ class Map():
     """Map Abstract Data Type."""
 
     def __init__(self):
-        """Instantiation method."""
+        """Instantiate the object."""
         pass
 
     def put(self, key, val):
@@ -26,4 +26,16 @@ class Map():
 
     def get(self, key):
         """Get the value associated with the key."""
+        pass
+
+    def delete(self, key):
+        """Delete the key-value pair."""
+        pass
+
+    def __len__(self):
+        """Return the number of key-value pairs."""
+        pass
+
+    def __in__(self, key):
+        """Return True for a statement of the form key in map."""
         pass
