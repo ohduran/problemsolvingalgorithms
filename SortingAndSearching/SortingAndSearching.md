@@ -51,4 +51,4 @@ For small collections, a complex sorting method may be more trouble than it is w
 In order to sort a collection, it will be necessary to have some systematic way to compare values to see if they are out of order. The total number of comparisons will be the most common way to measure a sort procedure; the exchange of positions is a costly operation and the total number of exchanges will also be important for evaluating the overall efficiency of the algorithm.
 
 ## Bubble Sort
-The bubble sort makes multiple passes through a list.
+The bubble sort makes multiple passes through a list. It compares adjacent items and exchanges those that are out of order.

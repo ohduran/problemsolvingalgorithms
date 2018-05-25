@@ -3,7 +3,7 @@ import sort
 
 
 unsorted_list = [3, 4, 1, 7, 2, 5, 9, 8, 6]
-sorted_list = range(10)
+sorted_list = range(1, 10)
 
 
 class TestSort(unittest.TestCase):
@@ -14,3 +14,7 @@ class TestSort(unittest.TestCase):
         result = sort.bubble_sort(unsorted_list)
 
         self.assertEqual(result, sorted_list)
+
+
+if __name__ == '__main__':
+    unittest.main()
