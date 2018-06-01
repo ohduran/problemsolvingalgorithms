@@ -19,3 +19,8 @@ def selection_sort(a_list):
                 pos_of_max = location
         a_list[slot], a_list[pos_of_max] = a_list[pos_of_max], a_list[slot]
     return a_list
+
+
+def insertion_sort(a_list):
+    """Apply Insertion Sort algorithm."""
+    return a_list

@@ -9,7 +9,7 @@ sorted_list = range(1, 10)
 def verify_sort(self, sort_function):
     """Verification test for a sort function."""
     result = sort_function(unsorted_list)
-    self.assertEqual(result, sorted_list)
+    return result == sorted_list
 
 
 class TestSort(unittest.TestCase):
@@ -20,10 +20,14 @@ class TestSort(unittest.TestCase):
         list_of_functions = [
             sort.bubble_sort,
             sort.selection_sort,
+            sort.insertion_sort,
         ]
 
         for sort_function in list_of_functions:
-            verify_sort(self, sort_function)
+            self.assertTrue(verify_sort(self, sort_function))
+
+    def test_test(self):
+        self.assertTrue(verify_sort(self, sort.insertion_sort))
 
 
 if __name__ == '__main__':
