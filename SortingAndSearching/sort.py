@@ -23,4 +23,15 @@ def selection_sort(a_list):
 
 def insertion_sort(a_list):
     """Apply Insertion Sort algorithm."""
+    for index in range(1, len(a_list)):
+        value = a_list[index]
+        position = index
+
+        while position > 0 and a_list[position - 1] > value:
+            a_list[position] = a_list[position - 1]
+
+            position -= 1
+
+        a_list[position] = value
+
     return a_list

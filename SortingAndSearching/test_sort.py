@@ -25,6 +25,7 @@ class TestSort(unittest.TestCase):
 
         for sort_function in list_of_functions:
             self.assertTrue(verify_sort(self, sort_function))
+            print(sort_function.__name__)
 
     def test_test(self):
         self.assertTrue(verify_sort(self, sort.insertion_sort))
