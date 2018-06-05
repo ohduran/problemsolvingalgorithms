@@ -110,5 +110,3 @@ def merge_lists(list_1, list_2):
             new_list.append(list_2[0])
             list_2.remove(list_2[0])
     return new_list
-
-print(merge_sort(A))
