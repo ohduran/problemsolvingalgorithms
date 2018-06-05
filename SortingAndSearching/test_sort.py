@@ -21,6 +21,7 @@ class TestSort(unittest.TestCase):
             sort.bubble_sort,
             sort.selection_sort,
             sort.insertion_sort,
+            sort.shell_sort,
         ]
 
         for sort_function in list_of_functions:

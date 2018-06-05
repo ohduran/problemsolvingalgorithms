@@ -45,7 +45,12 @@ def insertion_sort(a_list, start=0, gap=1):
 
 def shell_sort(a_list):
     """Apply Shell Sort algorithm."""
-    pass
+    sublist_count = len(a_list) // 2
+    while sublist_count > 0:
+        for start_position in range(sublist_count):
+            a_list = insertion_sort(a_list, start=start_position, gap=sublist_count)
+        sublist_count = sublist_count // 2
+    return a_list
 
 
-print(insertion_sort(A))
+print(shell_sort(A))
