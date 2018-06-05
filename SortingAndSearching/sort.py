@@ -48,9 +48,67 @@ def shell_sort(a_list):
     sublist_count = len(a_list) // 2
     while sublist_count > 0:
         for start_position in range(sublist_count):
-            a_list = insertion_sort(a_list, start=start_position, gap=sublist_count)
+            a_list = insertion_sort(
+                a_list,
+                start=start_position,
+                gap=sublist_count
+                )
         sublist_count = sublist_count // 2
     return a_list
 
 
-print(shell_sort(A))
+def merge_sort(a_list):
+    """
+    Apply Merge Sort algorithm.
+
+    Merge Sort is a recursive algorithm
+    that continually splits a list in half. If
+    the list is empty or has one item, it is
+    sorted by definition (base case). If
+    the list has more than one item, we split
+    the list in half and recursively invoke a merge
+    sort on both halves.
+
+    Once the two halves are sorted, the
+    merge is performed: taking two smaller sorted lists
+    and combine them together into a single sorted bigger list.
+    """
+    if len(a_list) <= 1:
+        # a list with one element is sorted by definition
+        return a_list
+    # apply recursion if length is 2 or more
+    else:
+        middle_term = len(a_list) // 2
+        left_half = a_list[:middle_term]
+        right_half = a_list[middle_term:]
+
+        left_half = merge_sort(left_half)
+        right_half = merge_sort(right_half)
+
+        return merge_lists(left_half, right_half)
+
+
+def merge_lists(list_1, list_2):
+    """Merge two sorted lists into one sorted list."""
+    if len(list_1) == 0:
+        return list_2
+    if len(list_2) == 0:
+        return list_1
+
+    new_list = []
+    length = len(list_1) + len(list_2)
+    while len(new_list) < length:
+        if len(list_1) == 0:
+            new_list = new_list + list_2
+        elif len(list_2) == 0:
+            new_list = new_list + list_1
+
+        elif list_1[0] < list_2[0]:
+            new_list.append(list_1[0])
+            list_1.remove(list_1[0])
+        elif list_1[0] >= list_2[0]:
+            new_list.append(list_2[0])
+            list_2.remove(list_2[0])
+    return new_list
+
+print(merge_sort(A))
