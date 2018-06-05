@@ -1,6 +1,9 @@
 """Sorting algorithms."""
 
 
+A = [15, 5, 4, 18, 12, 19, 14, 10, 8, 20]
+
+
 def bubble_sort(a_list):
     """Apply Bubble Sort algorithm."""
     for item in reversed(range(len(a_list))):
@@ -21,17 +24,28 @@ def selection_sort(a_list):
     return a_list
 
 
-def insertion_sort(a_list):
-    """Apply Insertion Sort algorithm."""
-    for index in range(1, len(a_list)):
-        value = a_list[index]
-        position = index
+def insertion_sort(a_list, start=0, gap=1):
+    """
+    Apply Insertion Sort algorithm.
+    With start, it sorts only a_list[a:].
+    With gap, it takes jumps of length gap
+    between elements of the list.
+    """
+    for i in range(start + gap, len(a_list), gap):
+        current_value = a_list[i]
+        position = i
 
-        while position > 0 and a_list[position - 1] > value:
-            a_list[position] = a_list[position - 1]
+        while position >= gap and a_list[position - gap] > current_value:
+            a_list[position] = a_list[position - gap]
+            position -= gap
 
-            position -= 1
-
-        a_list[position] = value
-
+        a_list[position] = current_value
     return a_list
+
+
+def shell_sort(a_list):
+    """Apply Shell Sort algorithm."""
+    pass
+
+
+print(insertion_sort(A))
