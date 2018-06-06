@@ -120,7 +120,7 @@ def quick_sort(a_list):
     and it will be used to split the list.
 
     """
-    quick_sort_helper(a_list, 0, len(a_list) - 1)
+    return quick_sort_helper(a_list, 0, len(a_list) - 1)
 
 
 def quick_sort_helper(a_list, first_position, last_position):
@@ -129,8 +129,10 @@ def quick_sort_helper(a_list, first_position, last_position):
 
         split_point = partition(a_list, first_position, last_position)
 
-        quick_sort_helper(a_list, first_position, split_point - 1)
+        quick_sort_helper(a_list, first_position, split_point)
         quick_sort_helper(a_list, split_point + 1, last_position)
+
+        return a_list
 
 
 def partition(a_list, first_position, last_position):
@@ -151,10 +153,10 @@ def partition(a_list, first_position, last_position):
             left_mark += 1
 
         # ignore anything on the right bigger than the pivot value
-        while a_list[right_mark] >= pivot_value and right_mark >= left_mark:
-            right_mark += 1
+        while right_mark >= left_mark and a_list[right_mark] > pivot_value:
+            right_mark -= 1
 
-        if a_list[right_mark] < a_list[left_mark]:
+        if right_mark < left_mark:
             # items are in the correct position
             done = True
         else:
@@ -165,6 +167,3 @@ def partition(a_list, first_position, last_position):
     a_list[first_position], a_list[right_mark] = a_list[right_mark], a_list[first_position]
 
     return right_mark
-
-
-print(quick_sort(A))
