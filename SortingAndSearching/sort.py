@@ -110,3 +110,48 @@ def merge_lists(list_1, list_2):
             new_list.append(list_2[0])
             list_2.remove(list_2[0])
     return new_list
+
+
+def quick_sort(self):
+    """
+    Apply Quick Sort algorithm.
+
+    The first value of the list is the pivot value,
+    and it will be used to split the list.
+
+    """
+    pass
+
+
+def partition(a_list, first_position, last_position):
+    """
+    Auxiliary function for quick_sort.
+    Return the Split point.
+    """
+    pivot_value = a_list[first_position]
+
+    left_mark = first_position + 1
+    right_mark = last_position
+
+    done = False
+    while not done:
+
+        # ignore anything on the left smaller than the pivot value
+        while left_mark <= right_mark and a_list[left_mark] <= pivot_value:
+            left_mark += 1
+
+        # ignore anything on the right bigger than the pivot value
+        while a_list[right_mark] >= pivot_value and right_mark >= left_mark:
+            right_mark += 1
+
+        if right_mark < left_mark:
+            # items are in the correct position
+            done = True
+        else:
+            # swap
+            a_list[left_mark], a_list[right_mark] = a_list[right_mark], a_list[left_mark]
+
+    # once everything is ordered, move the pivot value to its split point
+    a_list[first_position], a_list[right_mark] = a_list[right_mark], a_list[first_position]
+
+    return right_mark
