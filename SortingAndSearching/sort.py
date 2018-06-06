@@ -112,7 +112,7 @@ def merge_lists(list_1, list_2):
     return new_list
 
 
-def quick_sort(self):
+def quick_sort(a_list):
     """
     Apply Quick Sort algorithm.
 
@@ -120,12 +120,22 @@ def quick_sort(self):
     and it will be used to split the list.
 
     """
-    pass
+    quick_sort_helper(a_list, 0, len(a_list) - 1)
+
+
+def quick_sort_helper(a_list, first_position, last_position):
+    """Auxiliary function for quick_sort."""
+    if first_position < last_position:
+
+        split_point = partition(a_list, first_position, last_position)
+
+        quick_sort_helper(a_list, first_position, split_point - 1)
+        quick_sort_helper(a_list, split_point + 1, last_position)
 
 
 def partition(a_list, first_position, last_position):
     """
-    Auxiliary function for quick_sort.
+    Auxiliary function for quick_sort_helper.
     Return the Split point.
     """
     pivot_value = a_list[first_position]
@@ -144,7 +154,7 @@ def partition(a_list, first_position, last_position):
         while a_list[right_mark] >= pivot_value and right_mark >= left_mark:
             right_mark += 1
 
-        if right_mark < left_mark:
+        if a_list[right_mark] < a_list[left_mark]:
             # items are in the correct position
             done = True
         else:
@@ -155,3 +165,6 @@ def partition(a_list, first_position, last_position):
     a_list[first_position], a_list[right_mark] = a_list[right_mark], a_list[first_position]
 
     return right_mark
+
+
+print(quick_sort(A))
