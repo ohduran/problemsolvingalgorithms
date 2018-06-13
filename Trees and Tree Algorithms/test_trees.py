@@ -1,5 +1,6 @@
 import unittest
 import trees
+import binaryheap
 
 
 class TestTrees(unittest.TestCase):
@@ -31,14 +32,19 @@ class TestTrees(unittest.TestCase):
         self.assertTrue(isinstance(r.get_right_child(), trees.BinaryTree))
         self.assertEqual(r.get_right_child().get_root_value(), 'c')
 
+    def test_minheap_isempty(self):
+        """Test Binary Heap isempty() method"""
+        bn = binaryheap.MinHeap()
+        # minheap must be initialised empty
+        self.assertTrue(bn.is_empty())
 
+    def test_minheap_insert(self):
+        bn = binaryheap.MinHeap()
 
+        bn.insert(5)
 
-
-class TestTreeAlgorithms(unittest.TestCase):
-    """Test Tree Algorithms."""
-
-    pass
+    def test_minheap_size(self):
+        pass
 
 
 if __name__ == '__main__':

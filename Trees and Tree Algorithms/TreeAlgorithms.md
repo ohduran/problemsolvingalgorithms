@@ -42,3 +42,11 @@ It has two common variations: the **min heap**, in which the smallest key is alw
 is always at the front.
 
 ### Binary Heap Implementation
+
+#### The Structure Property
+We are taking advantage of the logarithmic nature of the binary tree to represent our heap, but we must keep it balanced.
+A **complete binary tree** is a tree in which each level has all of its nodes.
+
+Another interesting property of a complete tree is that we can represent it using a single list. We do not need to use nodes
+and references or even list of lists. Because the tree is complete, the left child of a parent (at position *p*) is the node found in the position *2p*.
+To find the parent of any node in the tree, we can use Python's integer division. Given a node in position *n*, the parent is at position n/2.
