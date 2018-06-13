@@ -9,7 +9,7 @@ All of the children of one node are independent of the children of another node.
 
 Each leaf node is unique; we can specify a path from the root of the tree to a leaf that uniquely identifies each leaf.
 
-## Vocabulary
+### Vocabulary
 
 - Node: A node is a fundamental block of the tree. It can have a name, the 'key', and additional information called 'payload'.
 - Edge: An edge connects two nodes to show that there is a relationship between them. Every node is connected by exactly one incoming edge, and may have several outgoing edges.
@@ -22,7 +22,23 @@ Each leaf node is unique; we can specify a path from the root of the tree to a l
 - Level of Node n: The number of edges on the path from the root node to n.
 - Height: Maximum level of any node in the tree.
 
-## Definitions
+### Definitions
 
 1. A tree consists of a set of nodes and a set of edges that connect pairs of nodes. One node is designated as the root node; every node except root is connected by an edge from exactly one other node; a unique path traverses from root to each node.
 2. A tree is either empty or consists of a root and zero or more subtrees, each of which is also a tree.
+
+## Binary Heaps and Priority Queues
+
+Earlier we have seen FIFO structures called queues, and in particular, the **priority queue**. In a priority queue,
+the logical order of items inside a queue is determined by their priority. The highest priority items
+are at the front of the queue and the lowest priority are at the back.
+
+Thus, when you enqueue an item on a priority queue, the new item may move all the way to the front.
+
+The classic way to implement a priority queue is using a binary heap, which will allow us both enqueue and dequeue items in *O(log n)*.
+
+The binary heap diagram looks a lot like a tree, but when implemented, we use only a single list as an internal representation.
+It has two common variations: the **min heap**, in which the smallest key is always at the front, and the **max heap**, in which the largest key
+is always at the front.
+
+### Binary Heap Implementation
