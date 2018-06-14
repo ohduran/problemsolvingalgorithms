@@ -75,6 +75,7 @@ class BinHeap(object):
         while i > 0:
             self.gain_heap_structure_property_down(i)
             i -= 1
+        return self
 
 
 class MinHeap(BinHeap):
@@ -97,7 +98,8 @@ class MinHeap(BinHeap):
         Return the position with the minimum key value,
         leaving the position in the heap.
         """
-        pass
+        if self.current_size > 0:
+            return self.heap_list[1]
 
     def delete_min(self):
         """
@@ -111,9 +113,10 @@ class MinHeap(BinHeap):
         To do so, we move the last item to the root, and
         regain heap structure property all the way down.
         """
-        min_key_value = self.heap_list[1]
-        self.heap_list[1] = self.heap_list[self.current_size]
-        self.current_size -= 1
-        self.heap_list.pop()
-        self.gain_heap_structure_property_down(1)
-        return min_key_value
+        if self.current_size > 0:
+            min_key_value = self.heap_list[1]
+            self.heap_list[1] = self.heap_list[self.current_size]
+            self.current_size -= 1
+            self.heap_list.pop()
+            self.gain_heap_structure_property_down(1)
+            return min_key_value
