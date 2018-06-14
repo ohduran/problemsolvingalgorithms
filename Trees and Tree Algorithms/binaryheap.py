@@ -53,17 +53,28 @@ class BinHeap(object):
         """Swap two elements' positions."""
         self.heap_list[position_a], self.heap_list[position_b] = self.heap_list[position_b], self.heap_list[position_a]
 
+    @property
     def is_empty(self):
         """Return True if the heap is empty"""
         return self.current_size == 0
 
+    @property
     def size(self):
         """Return the number of positions in the heap"""
         return self.current_size
 
     def build_heap(self, key_list):
-        """Builds a new heap from a list of keys."""
-        pass
+        """
+        Builds a new heap from a list of keys.
+
+
+        """
+        i = len(key_list) // 2
+        self.current_size = len(key_list)
+        self.heap_list = [None] + key_list[:]
+        while i > 0:
+            self.gain_heap_structure_property_down(i)
+            i -= 1
 
 
 class MinHeap(BinHeap):

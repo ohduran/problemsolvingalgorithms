@@ -36,12 +36,13 @@ class TestTrees(unittest.TestCase):
         """Test Binary Heap isempty() method"""
         bn = binaryheap.MinHeap()
         # minheap must be initialised empty
-        self.assertTrue(bn.is_empty())
+        self.assertTrue(bn.is_empty)
 
     def test_minheap_insert(self):
         bn = binaryheap.MinHeap()
 
         bn.insert(5)
+        self.assertEqual(bn.size, 1)
 
     def test_minheap_size(self):
         pass
